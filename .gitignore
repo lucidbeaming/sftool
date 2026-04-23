@@ -1,8 +1,8 @@
 # Soundfonts (ignore everywhere except samples/)
 *.sf2
 *.wav
-!samples/**/*.sf2
-!samples/**/*.wav
+!examples/**/*.sf2
+!examples/**/*.wav
 
 # Python
 __pycache__/
