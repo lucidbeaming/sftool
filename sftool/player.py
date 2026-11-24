@@ -13,7 +13,8 @@ class Player:
         self._fs = fluidsynth.Synth(gain=0.8)
         self._started = False
         self._sfid: Optional[int] = None
-        self._lock = threading.Lock()
+        # Reentrant: load() holds the lock while calling all_notes_off(), which takes it too
+        self._lock = threading.RLock()
         self._active_notes: set[int] = set()
         self._start_audio()
 
