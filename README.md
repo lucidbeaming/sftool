@@ -2,6 +2,8 @@
 
 Browse and preview SF2 soundfonts in a desktop GUI or terminal UI.
 
+Documentation: [lucidbeaming.com/art/code/sftool](https://lucidbeaming.com/art/code/sftool)
+
 ![SFTool's window: the 287 presets of the GeneralUser GS soundfont in a filterable list on the left, Violin selected, and a three-octave piano keyboard with octave, velocity and octaves-shown controls on the right](docs/images/gui.png)
 
 A cross-platform soundfont (`.sf2`) browser and preview tool written in Python. Load a soundfont, find an instrument, and play it on an on-screen or computer keyboard.

@@ -21,3 +21,7 @@ known-first-party = ["sftool"]
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
+
+[project.urls]
+Documentation = "https://lucidbeaming.com/art/code/sftool"
+Source = "https://github.com/lucidbeaming/sftool"
