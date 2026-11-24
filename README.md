@@ -1,6 +1,10 @@
 # SFTool
 
-A cross-platform soundfont (`.sf2`) browser and preview tool written in Python. Runs as a desktop GUI or a full-featured terminal UI.
+Browse and preview SF2 soundfonts in a desktop GUI or terminal UI.
+
+![SFTool's window: the 287 presets of the GeneralUser GS soundfont in a filterable list on the left, Violin selected, and a three-octave piano keyboard with octave, velocity and octaves-shown controls on the right](docs/images/gui.png)
+
+A cross-platform soundfont (`.sf2`) browser and preview tool written in Python. Load a soundfont, find an instrument, and play it on an on-screen or computer keyboard.
 
 ## Features
 
@@ -12,7 +16,7 @@ A cross-platform soundfont (`.sf2`) browser and preview tool written in Python. 
 
 ## Requirements
 
-- Python 3.11+
+- Python 3.11+. The GUI needs a Python built with Tk: `python3 -m tkinter` should open a small test window. Some pyenv and Homebrew Pythons don't include it; the [uv](https://docs.astral.sh/uv/)-managed and python.org builds do. The TUI doesn't need Tk.
 - [FluidSynth](https://www.fluidsynth.org/) (native library, installed separately)
 - `pyfluidsynth` (Python binding, installed via pip)
 
@@ -36,11 +40,17 @@ sudo dnf install fluidsynth
 **Windows**
 Download the installer from https://github.com/FluidSynth/fluidsynth/releases and add the `bin/` directory to your `PATH`.
 
-### Install Python dependencies
+### Install SFTool
 
 ```bash
+git clone https://github.com/lucidbeaming/sftool.git
+cd sftool
 pip install -r requirements.txt
 ```
+
+### A soundfont to try
+
+Any General MIDI soundfont works. [GeneralUser GS](https://schristiancollins.com/generaluser.php) by S. Christian Collins is free and has 287 presets. Save it anywhere and pass its path. (`examples/` is the one folder where `.sf2` files aren't git-ignored, so keep third-party soundfonts out of it if you commit.)
 
 ## Usage
 
@@ -51,19 +61,7 @@ python main.py
 python main.py path/to/file.sf2   # open a soundfont on launch
 ```
 
-A tkinter window opens with a resizable instrument list on the left and an interactive piano keyboard on the right.
-
-![GUI layout]
-```
-┌─ File ──────────────────────────────────────────────────────┐
-│ Instruments  28/28    │  ♪ Modular Fat 1   Bank 0  Preset 0 │
-│  Bank Preset Name     │─────────────────────────────────────│
-│   0    0  Modular..   │  Octave ◀ 4 ▶   Velocity ──── 80   │
-│   0    1  Modular..   │                                     │
-│   0    2  Sync 2      │  [piano keyboard]                   │
-│   ...                 │                                     │
-└───────────────────────┴─────────────────────────────────────┘
-```
+A tkinter window opens with a resizable instrument list on the left and an interactive piano keyboard on the right (screenshot at the top). The status bar shows the soundfont and the selected instrument.
 
 **GUI controls:**
 
@@ -88,22 +86,35 @@ python main.py --tui path/to/file.sf2
 On systems without a display (SSH, headless servers) the TUI is selected automatically.
 
 ```
- ♪ SFTool ───────── [O]Open  [/]Filter  [↑↓]Navigate  [z/x]Oct  [,/.]Vel  [Q]Quit
- Instruments 28/28  │  ♪  Modular Fat 1                          Bank 0  Preset 0
-  000:0  Modular F  │  ──────────────────────────────────────────────────────────
-  000:1  Modular F  │  Octave: 4  [z]▼ [x]▲      Velocity: 80  [,]▼ [.]▲
-  000:2  Sync 2     │
-  000:3  Sync 3     │  ┌───┬───┬───┬───┬───┬───┬───┐  oct 4
-  000:4  Synth 10   │  │   ░░  ░░  │   ░░  ░░  ░░  │
-  000:5  Synth 14   │  │   ░░  ░░  │   ░░  ░░  ░░  │
-  000:6  Bass 3     │  │   │   │   │   │   │   │   │
-  000:7  Acid Bass  │  │ C │ D │ E │ F │ G │ A │ B │
-                    │  └───┴───┴───┴───┴───┴───┴───┘
-  [/] filter        │
-                    │    [w] [e]       [t] [y] [u]
-                    │  [a] [s] [d]  [f] [g] [h] [j] [k]   z/x=oct  ,/.=vel
- Loaded lucid.sf2  (28 presets)
+ ♪ SFTool ─────────────────────── [O]Open  [/]Filter  [↑↓]Navigate  [z/x]Oct  [,/.]Vel  [Q]Quit
+ Instruments 287/287            │  ♪  Violin                                  Bank 0  Preset 40
+   0:19   Pipe Organ            │───────────────────────────────────────────────────────────────
+   0:20   Reed Organ            │ Octave: 4  [z]▼ [x]▲    Velocity: 80  [,]▼ [.]▲
+   0:21   Accordion             │
+   0:22   Harmonica             │ ┌───┬───┬───┬───┬───┬───┬───┐
+   0:23   Bandoneon             │ │  ░░  ░░   │  ░░  ░░  ░░   │
+   0:24   Nylon Guitar          │ │  ░░  ░░   │  ░░  ░░  ░░   │ oct 4
+   0:25   Steel Guitar          │ │   │   │   │   │   │   │   │
+   0:26   Jazz Guitar           │ │C  │D  │E  │F  │G  │A  │B  │
+   0:27   Clean Guitar          │ └───┴───┴───┴───┴───┴───┴───┘
+   0:28   Muted Guitar          │
+   0:29   Overdrive Guitar      │   [w] [e]     [t] [y] [u]
+   0:30   Distortion Guitar     │ [a] [s] [d] [f] [g] [h] [j] [k]   z/x=oct  ,/.=vel
+   0:31   Guitar Harmonics      │
+   0:32   Acoustic Bass         │
+   0:33   Finger Bass           │
+   0:34   Pick Bass             │
+   0:35   Fretless Bass         │
+   0:36   Slap Bass 1           │
+   0:37   Slap Bass 2           │
+   0:38   Synth Bass 1          │
+   0:39   Synth Bass 2          │
+   0:40   Violin                │
+ [/] filter                     │
+    GeneralUser-GS.sf2  (287 presets)
 ```
+
+(GeneralUser GS in a 96×26 terminal, Violin selected.)
 
 **TUI controls:**
 
@@ -156,6 +167,11 @@ sftool/
 
 **TUI is garbled** — make sure your terminal emulator supports UTF-8 and 256 colours. Set `TERM=xterm-256color` if needed.
 
+## Related projects
+
+- [Fluidsynth-Webapp](https://github.com/lucidbeaming/Fluidsynth-Webapp): a web app for switching FluidSynth instruments over its shell
+- [pi-synths](https://github.com/lucidbeaming/pi-synths): scripts for building music machines on Raspberry Pi
+
 ## License
 
-MIT
+[MIT](LICENSE).
