@@ -9,6 +9,7 @@ All notable changes to this project are documented here. The format is based on 
 - Loading a soundfont no longer hangs the app: `Player.load()` re-acquired its own non-reentrant lock through `all_notes_off()` (#5)
 
 ### Added
+- README: GUI screenshot and real TUI capture, clone command, Tk requirement note, a soundfont to try, related projects (#9)
 - MIT license (#3)
 
 ### Changed
