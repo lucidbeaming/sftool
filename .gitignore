@@ -1,4 +1,4 @@
-# Soundfonts (ignore everywhere except samples/)
+# Soundfonts and audio (ignored everywhere except examples/)
 *.sf2
 *.wav
 !examples/**/*.sf2
@@ -83,6 +83,12 @@ ipython_config.py
 Network Trash Folder
 Temporary Items
 
+# Windows
+Thumbs.db
+
+# Logs
+*.log
+
 # Claude
 .claude/
 
@@ -92,7 +98,8 @@ Temporary Items
 .cursorindexingignore
 
 # VS Code
-.vscode/
+.vscode/*
+!.vscode/extensions.json
 *.code-workspace
 
 # JetBrains (PyCharm, IntelliJ, etc.)
