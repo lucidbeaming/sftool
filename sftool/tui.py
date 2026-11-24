@@ -69,7 +69,8 @@ def _hline(win, y, x, ch, n, attr=0):
     if y < 0 or y >= h or x < 0:
         return
     try:
-        win.hline(y, x, ch, min(n, w - x), attr)
+        # addstr, not hline: hline() only takes single-byte characters, and '─' isn't one
+        win.addstr(y, x, ch * min(n, w - x), attr)
     except curses.error:
         pass
 
