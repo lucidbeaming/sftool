@@ -4,5 +4,8 @@ All notable changes to this project are documented here. The format is based on 
 
 ## [Unreleased]
 
+### Added
+- MIT license (#3)
+
 ### Changed
 - `.gitignore` aligned with the portfolio's common block: logs, Windows thumbnails, shared `.vscode/extensions.json`; soundfont comment points at `examples/` (#1)
