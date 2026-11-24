@@ -5,6 +5,7 @@ All notable changes to this project are documented here. The format is based on 
 ## [Unreleased]
 
 ### Fixed
+- The TUI no longer crashes drawing the instrument panel: its rule used curses `hline()`, which can't take the `─` character (#7)
 - Loading a soundfont no longer hangs the app: `Player.load()` re-acquired its own non-reentrant lock through `all_notes_off()` (#5)
 
 ### Added
